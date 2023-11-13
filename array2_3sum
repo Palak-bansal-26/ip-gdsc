@@ -1,0 +1,74 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+std::vector<std::vector<int>> threeSum(std::vector<int>& nums) {
+    std::vector<std::vector<int>> result;
+
+    // Sort the array
+    std::sort(nums.begin(), nums.end());
+
+    int n = nums.size();
+
+    for (int i = 0; i < n - 2; ++i) {
+        // Skip duplicates
+        if (i > 0 && nums[i] == nums[i - 1])
+            continue;
+
+        int target = -nums[i];
+        int left = i + 1;
+        int right = n - 1;
+
+        while (left < right) {
+            int currentSum = nums[left] + nums[right];
+
+            if (currentSum == target) {
+                result.push_back({nums[i], nums[left], nums[right]});
+
+                // Skip duplicates
+                while (left < right && nums[left] == nums[left + 1])
+                    left++;
+                while (left < right && nums[right] == nums[right - 1])
+                    right--;
+
+                // Move pointers
+                left++;
+                right--;
+            } else if (currentSum < target) {
+                // Move left pointer to increase the sum
+                left++;
+            } else {
+                // Move right pointer to decrease the sum
+                right--;
+            }
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    // Input size of the array
+    int size;
+    std::cout << "Enter the size of the array: ";
+    std::cin >> size;
+
+    // Input array elements
+    std::vector<int> nums(size);
+    std::cout << "Enter " << size << " elements for the array:" << std::endl;
+    for (int i = 0; i < size; ++i) {
+        std::cout << "Element " << i + 1 << ": ";
+        std::cin >> nums[i];
+    }
+
+    // Find and print triplets whose sum is zero
+    std::vector<std::vector<int>> result = threeSum(nums);
+
+    // Print the result
+    std::cout << "Triplets whose sum is zero:" << std::endl;
+    for (const auto& triplet : result) {
+        std::cout << "[" << triplet[0] << ", " << triplet[1] << ", " << triplet[2] << "]" << std::endl;
+    }
+
+    return 0;
+}
