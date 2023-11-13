@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Function to add two non-negative integers represented as strings
+string addStrings(string num1, string num2) {
+    string result = "";
+    int carry = 0;
+    
+    int i = num1.size() - 1;
+    int j = num2.size() - 1;
+
+    while (i >= 0 || j >= 0 || carry > 0) {
+        int digit1 = (i >= 0) ? num1[i] - '0' : 0;
+        int digit2 = (j >= 0) ? num2[j] - '0' : 0;
+
+        int sum = digit1 + digit2 + carry;
+        carry = sum / 10;
+
+        result = char(sum % 10 + '0') + result;
+
+        i--;
+        j--;
+    }
+
+    return result;
+}
+
+int main() {
+    // Input two non-negative integers as strings
+    cout << "Enter the first non-negative integer: ";
+    string num1;
+    cin >> num1;
+
+    cout << "Enter the second non-negative integer: ";
+    string num2;
+    cin >> num2;
+
+    // Call the function to add the two numbers
+    string sum = addStrings(num1, num2);
+
+    // Display the result
+    cout << "Sum of the two numbers: " << sum << endl;
+
+    return 0;
+}
+
+
+
+
+
