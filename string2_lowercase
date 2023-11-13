@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Function to convert uppercase letters to lowercase in-place
+void convertToLowerCase(string& s) {
+    for (char& c : s) {
+        if (isupper(c)) {
+            c = tolower(c);
+        }
+    }
+}
+
+int main() {
+    // Input the string
+    cout << "Enter a string: ";
+    string inputString;
+    getline(cin, inputString);
+
+    // Call the function to convert uppercase letters to lowercase
+    convertToLowerCase(inputString);
+
+    // Display the modified string
+    cout << "String after converting uppercase to lowercase: " << inputString << endl;
+
+    return 0;
+}
