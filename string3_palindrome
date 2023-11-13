@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+#include <cctype> // for isalnum
+
+using namespace std;
+
+// Function to check if a string is a palindrome
+bool isPalindrome(string s) {
+    // Convert all characters to lowercase
+    string modifiedString;
+    for (char c : s) {
+        if (isalnum(c)) {
+            modifiedString.push_back(tolower(c));
+        }
+    }
+
+    // Check if the modified string is a palindrome
+    int left = 0;
+    int right = modifiedString.length() - 1;
+
+    while (left < right) {
+        if (modifiedString[left] != modifiedString[right]) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+
+    return true;
+}
+
+int main() {
+    // Input the string
+    cout << "Enter a string: ";
+    string inputString;
+    getline(cin, inputString);
+
+    // Check if the string is a palindrome
+    bool result = isPalindrome(inputString);
+
+    // Display the result
+    if (result) {
+        cout << "The string is a palindrome." << endl;
+    } else {
+        cout << "The string is not a palindrome." << endl;
+    }
+
+    return 0;
+}
