@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Function to sort an array of 0s, 1s, and 2s
+void sort012(vector<int>& arr, int N) {
+    int low = 0;
+    int high = N - 1;
+    int mid = 0;
+
+    while (mid <= high) {
+        switch (arr[mid]) {
+            case 0:
+                swap(arr[low], arr[mid]);
+                low++;
+                mid++;
+                break;
+            case 1:
+                mid++;
+                break;
+            case 2:
+                swap(arr[mid], arr[high]);
+                high--;
+                break;
+        }
+    }
+}
+
+int main() {
+    // Input the size of the array
+    int N;
+    cout << "Enter the size of the array: ";
+    cin >> N;
+
+    // Input the elements of the array (0s, 1s, and 2s only)
+    vector<int> arr(N);
+    cout << "Enter the elements of the array (0s, 1s, and 2s only):\n";
+    for (int i = 0; i < N; ++i) {
+        cout << "Enter element " << i + 1 << ": ";
+        cin >> arr[i];
+    }
+
+    // Call the function to sort the array
+    sort012(arr, N);
+
+    // Display the sorted array
+    cout << "Sorted array in ascending order: ";
+    for (int i = 0; i < N; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
