@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Function to reverse a string in-place
+void reverseString(vector<char>& s) {
+    int left = 0;
+    int right = s.size() - 1;
+
+    while (left < right) {
+        // Swap characters at left and right indices
+        swap(s[left], s[right]);
+
+        // Move indices towards the center
+        left++;
+        right--;
+    }
+}
+
+int main() {
+    // Input the string as an array of characters
+    cout << "Enter the string as an array of characters: ";
+    string inputString;
+    getline(cin, inputString);
+
+    // Convert the string to a vector of characters
+    vector<char> charArray(inputString.begin(), inputString.end());
+
+    // Call the function to reverse the string
+    reverseString(charArray);
+
+    // Display the reversed string
+    cout << "Reversed string: ";
+    for (char c : charArray) {
+        cout << c;
+    }
+    cout << endl;
+
+    return 0;
+}
